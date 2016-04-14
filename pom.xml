@@ -1,0 +1,92 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>fr.vlaamsdk</groupId>
+  <artifactId>startek</artifactId>
+  <version>0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+
+  <name>*-tek</name>
+  <description>
+    Manage your collections : comics, books, DVD, BRD, music... and why not other ones ?
+  </description>
+  <url>https://github.com/ChtiDkois/star-tek</url>
+  <inceptionYear>2016</inceptionYear>
+
+  <licenses>
+    <license>
+      <name>GNU Affero General Public License (AGPL)</name>
+      <url>http://www.gnu.org/licenses/agpl.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+  <developers>
+    <developer>
+      <id>martel</id>
+      <name>Yannick Martel</name>
+      <email>martel@codelutin.com</email>
+      <roles>
+        <role>developer</role>
+      </roles>
+      <timezone>Europe/Paris</timezone>
+    </developer>
+  </developers>
+
+  <prerequisites>
+    <maven>3.0.5</maven>
+  </prerequisites>
+
+  <modules>
+    <module>startek-persistence</module>
+    <module>startek-services</module>
+  </modules>
+
+
+  <scm>
+    <connection>scm:git:https://github.com/ChtiDkois/star-tek.git</connection>
+    <developerConnection>scm:git:https://github.com/ChtiDkois/star-tek.git</developerConnection>
+    <url>https://github.com/ChtiDkois/star-tek.git</url>
+  </scm>
+
+  <properties>
+    <projectId>startek</projectId>
+
+    <!-- license to use  -->
+    <license.licenseName>agpl_v3</license.licenseName>
+
+    <!-- Java Version -->
+    <javaVersion>1.7</javaVersion>
+    <signatureArtifactId>java17</signatureArtifactId>
+    <signatureVersion>1.0</signatureVersion>
+    <maven.compiler.source>${javaVersion}</maven.compiler.source>
+    <maven.compiler.target>${javaVersion}</maven.compiler.target>
+  </properties>
+
+  <build>
+
+    <!--Ressources-->
+    <resources>
+      <resource>
+        <directory>${project.basedir}/src/main/resources</directory>
+        <includes>
+          <include>**/*</include>
+        </includes>
+        <excludes>
+          <exclude>**/*~</exclude>
+        </excludes>
+      </resource>
+    </resources>
+
+    <pluginManagement>
+
+      <plugins>
+      </plugins>
+
+    </pluginManagement>
+  </build>
+
+</project>
