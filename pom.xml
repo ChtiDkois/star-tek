@@ -64,7 +64,32 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <signatureVersion>1.0</signatureVersion>
     <maven.compiler.source>${javaVersion}</maven.compiler.source>
     <maven.compiler.target>${javaVersion}</maven.compiler.target>
+
+    <!-- Dependencies Versions -->
+    <jooqVersion>3.7.3</jooqVersion>
+
   </properties>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.jooq</groupId>
+        <artifactId>jooq</artifactId>
+        <version>${jooqVersion}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.jooq</groupId>
+        <artifactId>jooq-meta</artifactId>
+        <version>${jooqVersion}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.jooq</groupId>
+        <artifactId>jooq-codegen</artifactId>
+        <version>${jooqVersion}</version>
+      </dependency>
+    </dependencies>
+
+  </dependencyManagement>
 
   <build>
 

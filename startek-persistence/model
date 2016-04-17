@@ -1,0 +1,55 @@
+Person:
+  String name
+  String fullname
+  String country
+
+Media:
+  String id
+  String title
+
+Book extends Media:
+  Person writer
+  int pages
+  String language
+  String editor
+  String publisher
+  String collection
+  Text summary
+
+Comics extends Book:
+  Person artist
+  Person colorArtist
+  Person letterer
+  int volume
+  int number
+  String collection
+  String country
+
+Video enteds Media:
+  String* languages
+  String* subTitles
+  Person* actors
+  Person* director
+  Person* writers
+  String studio
+  String rating
+  String country
+  VideoFormat format
+  Date releaseDate
+  int duration
+  String identificationNumber
+
+VideoFormat = enum [vhs, dvd, brd, digital]
+
+DigitalVideo extends Video:
+  String videoEncoding
+  String audioEncoding
+
+DiscVideo extends Video:
+  String region
+  int nbDiscs
+
+Music extends Media:
+  Person singer
+  String label
+  int nbTracks
