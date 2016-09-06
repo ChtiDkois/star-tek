@@ -1,6 +1,6 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
@@ -18,19 +18,89 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
   <dependencies>
     <dependency>
-      <groupId>org.jooq</groupId>
-      <artifactId>jooq</artifactId>
+      <groupId>org.nuiton.topia</groupId>
+      <artifactId>topia-persistence</artifactId>
     </dependency>
+
     <dependency>
-      <groupId>org.jooq</groupId>
-      <artifactId>jooq-meta</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.jooq</groupId>
-      <artifactId>jooq-codegen</artifactId>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-core</artifactId>
     </dependency>
   </dependencies>
 
   <build>
+    <resources>
+      <resource>
+        <directory>${project.build.directory}/generated-sources/resources
+        </directory>
+        <includes>
+          <include>objectmodel/*.properties</include>
+        </includes>
+      </resource>
+      <resource>
+        <directory>src/main/resources</directory>
+        <includes>
+          <include>**/*</include>
+        </includes>
+      </resource>
+      <resource>
+        <directory>src/main/filters</directory>
+        <filtering>true</filtering>
+        <includes>
+          <include>*.properties</include>
+        </includes>
+      </resource>
+    </resources>
+    <testResources>
+      <testResource>
+        <directory>src/test/resources</directory>
+        <includes>
+          <include>**/*</include>
+        </includes>
+      </testResource>
+    </testResources>
+    <plugins>
+
+      <!-- Plug in Topia -->
+      <plugin>
+        <groupId>org.nuiton.eugene</groupId>
+        <artifactId>eugene-maven-plugin</artifactId>
+        <configuration>
+          <inputs>zargo</inputs>
+          <resolver>org.nuiton.util.FasterCachedResourceResolver</resolver>
+        </configuration>
+        <executions>
+          <execution>
+            <id>generate-entities</id>
+            <phase>generate-sources</phase>
+            <configuration>
+              <!-- Corresponding to extracted package from zargo file -->
+              <fullPackagePath>
+                fr.vlaamsdk.startek.persistence
+              </fullPackagePath>
+              <!-- defaultPackage used for generation -->
+              <defaultPackage>
+                fr.vlaamsdk.startek.persistence
+              </defaultPackage>
+              <templates>
+                org.nuiton.topia.templates.TopiaMetaTransformer
+              </templates>
+              <failIfUnsafe>true</failIfUnsafe>
+            </configuration>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+          </execution>
+        </executions>
+        <dependencies>
+          <dependency>
+            <groupId>org.nuiton.topia</groupId>
+            <artifactId>topia-templates</artifactId>
+            <version>${topiaVersion}</version>
+          </dependency>
+        </dependencies>
+      </plugin>
+
+    </plugins>
   </build>
 </project>

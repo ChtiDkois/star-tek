@@ -4,7 +4,6 @@ Person:
   String country
 
 Media:
-  String id
   String title
 
 Book extends Media:
@@ -22,10 +21,9 @@ Comics extends Book:
   Person letterer
   int volume
   int number
-  String collection
   String country
 
-Video enteds Media:
+Video extends Media:
   String* languages
   String* subTitles
   Person* actors
